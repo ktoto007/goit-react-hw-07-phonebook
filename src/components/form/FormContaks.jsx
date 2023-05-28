@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { object, string } from 'yup';
-
+import { selectContactList } from 'redux/selectors';
 import { FormLabel, FormInput, StyledForm } from './FormContaks.styled';
 import { addContact } from 'redux/operetion';
 
 export const FormContaks = () => {
-  const contacts = useSelector(state => state.phonebook.contacts);
+  const contacts = useSelector(selectContactList);
   const dispatch = useDispatch();
 
   const schema = object({
@@ -29,7 +29,7 @@ export const FormContaks = () => {
       alert(`${values.name} is already in contacts`);
       return;
     } else {
-      dispatch(addContact({ name: values.name, numder: values.number }));
+      dispatch(addContact({ ...values }));
     }
   };
 

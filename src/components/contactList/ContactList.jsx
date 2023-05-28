@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { ListItem } from 'components/listItem/ListItem';
-
+import { selectFilterParam, selectContactList } from 'redux/selectors';
 export const ContactList = () => {
-  const contacts = useSelector(state => state.phonebook.contacts);
-  const filter = useSelector(state => state.phonebook.filter);
+  const contacts = useSelector(selectContactList);
+  const filter = useSelector(selectFilterParam);
 
   const onFilterContact = () => {
     return contacts.filter(contact =>
